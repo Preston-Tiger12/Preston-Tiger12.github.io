@@ -274,7 +274,9 @@ export function render(kind, h, projects, root) {
       tl.to(".hx-row.r1 .c", { xPercent: i => -60 - i * 28, yPercent: i => -20 - (i % 3) * 30, opacity: 0, ease: "none", stagger: 0.02 }, 0)
         .to(".hx-row.r2 .c", { xPercent: i => 40 + i * 30, yPercent: i => 20 + (i % 3) * 25, opacity: 0, ease: "none", stagger: 0.02 }, 0)
         .to(".hx-read, .hx-voice, .hx-cue", { opacity: 0, y: -20, ease: "none" }, 0);
-      if (!reduced) gsap.from(".hx-row .c", { yPercent: 110, duration: 1.1, ease: "power4.out", stagger: 0.035, delay: 0.15 });
+      // intro rise uses y (px), not yPercent: the scrubbed timeline above owns yPercent, and sharing it let
+      // that timeline record a half-risen start value, leaving each row's first letter stuck below its clip
+      if (!reduced) gsap.from(".hx-row .c", { y: (i, el) => el.offsetHeight * 1.1, duration: 1.1, ease: "power4.out", stagger: 0.035, delay: 0.15 });
     });
     const heroST = ScrollTrigger.getAll().find(t => t.trigger === hero);
 
