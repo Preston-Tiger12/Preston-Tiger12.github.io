@@ -758,3 +758,7 @@ body.sol-dark .sol-tuner.ok .sol-freq span{color:#7DDC9E}
   .ex-read{order:6;margin-top:22px;padding-bottom:12px}
   .ex-how{grid-template-columns:minmax(0,1fr)}
 }
+
+/* about title in the option-B style: uppercase blur-in words, "Brave" in gold script */
+.hx-ab-title.hx-ab-cine{font:700 clamp(54px,8.6vw,160px)/.92 var(--display);letter-spacing:-.045em;text-transform:uppercase;max-width:9.6ch}
+.hx-ab-cine .script{font:400 1.3em/.7 var(--script);text-transform:none;letter-spacing:0;color:var(--gold);padding:0 .06em}

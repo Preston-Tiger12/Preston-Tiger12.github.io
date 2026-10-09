@@ -168,7 +168,7 @@ function aboutHTML(h) {
   return `
   <section class="hx-ab-hero" id="abHero">
     <p class="hx-label" data-scramble>About / ${esc(h.name)}</p>
-    <h1 class="hx-ab-title" data-lines>${esc(h.aboutTitle)}</h1>
+    <h1 class="hx-ab-title hx-cine hx-ab-cine" aria-label="${esc(h.aboutTitle)}">${cine(h.aboutTitle, h.aboutScript || "brave").replace(/(\.<\/span>) /, "$1<br>")}</h1>
     <p class="hx-aka"><small>a.k.a.</small>${nick(h)}</p>
     <dl class="hx-read hx-ab-read">${(h.facts || []).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
   </section>
@@ -252,12 +252,20 @@ export function render(kind, h, projects, root) {
 
   // intro statement: words come out of a blur as the paragraph scrolls in (scrubbed, so it reverses too)
   ctx.add(() => {
-    root.querySelectorAll(".hx-cine").forEach(el => {
+    root.querySelectorAll(".hx-cine:not(.hx-ab-cine)").forEach(el => {
       const ws = el.querySelectorAll(".w");
       if (reduced) return;
       // long, overlapping stagger so several words sit at different depths at once (near ones sharp, far ones soft)
       gsap.fromTo(ws, { opacity: 0.06, y: 70, scale: 1.18, filter: "blur(18px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", ease: "power1.out", duration: 1, stagger: 0.35,
         scrollTrigger: { trigger: el, start: "top 95%", end: "bottom 30%", scrub: 0.8 } });
+    });
+  });
+  // about title: same blur-in, but played on load (it is already on screen, so a scroll-scrub would leave it blurred)
+  ctx.add(() => {
+    root.querySelectorAll(".hx-ab-cine").forEach(el => {
+      if (reduced) return;
+      gsap.fromTo(el.querySelectorAll(".w"), { opacity: 0, y: 60, scale: 1.2, filter: "blur(18px)" },
+        { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.3, ease: "power3.out", stagger: 0.22, delay: 0.25 });
     });
   });
   const anchors = [];

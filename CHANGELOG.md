@@ -2,6 +2,11 @@
 
 All notable changes to the portfolio site.
 
+## 1.1.0 · 10 October 2026
+
+### Changed
+- **About page title** is now "Engineer. Be Brave." (it was "Engineer. Serial starter."). It uses the same cinematic style as the home statement: uppercase words blur in from depth one after another, with "Brave" set in gold script (blue in light mode). The title is already on screen when the page opens, so it plays on load instead of being tied to scrolling.
+
 ## 1.0.1 · 10 October 2026
 
 ### Fixed
