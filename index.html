@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ntwali Preston (Tiger), Mechanical Engineering</title>
+<meta name="description" content="Engineering portfolio of Ntwali Preston (Tiger, @Tiger_Pres), Mechanical Engineering (Robotics, Mechatronics, Avionics and Space), University of Hull.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,300;1,6..72,400&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="vendor/gsap/lenis.css">
+<link rel="stylesheet" href="portfolio.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/addons/" } }</script>
+<script>
+  try { const t = localStorage.getItem("hangar-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#home" data-home aria-label="Ntwali Preston, home" data-cursor="Home"><span class="brand-nick glitch" data-text="TIGER">TIGER</span><span class="brand-name">Ntwali Preston</span></a>
+  <nav class="navline" id="tabs" aria-label="Pages"></nav>
+  <button type="button" class="iconbtn" id="theme" aria-label="Switch theme"></button>
+  <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu"><span class="menu-word">Menu</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu-wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="menu-in">
+    <nav class="menu-links" id="menuLinks" aria-label="Menu"></nav>
+    <div class="menu-side">
+            <p class="menu-note" id="menuNote"></p>
+      <div class="menu-contact" id="menuContact"></div>
+    </div>
+  </div>
+</div>
+
+<main id="page" aria-live="polite"></main>
+<div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+<i class="cursor-dot" id="cursorDot" aria-hidden="true"></i>
+
+<footer class="foot">
+  <span class="sig">Tiger</span>
+  <span class="mu">Ntwali Preston · Mechanical Engineering, University of Hull · @Tiger_Pres</span>
+  <span class="foot-hue" aria-hidden="true"><i></i><i></i><i></i></span>
+</footer>
+<script src="vendor/gsap/gsap.min.js"></script>
+<script src="vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="vendor/gsap/SplitText.min.js"></script>
+<script src="vendor/gsap/ScrambleTextPlugin.min.js"></script>
+<script src="vendor/gsap/lenis.min.js"></script>
+<script src="portfolio.js"></script>
+</body>
+</html>

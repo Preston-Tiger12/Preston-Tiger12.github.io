@@ -1,0 +1,323 @@
+{
+  "id": "energy-harvesting",
+  "layout": "solare",
+  "darkOnly": true,
+  "tab": "Solar TEG",
+  "code": "EGC-01",
+  "title": "Power for the most remote place",
+  "titleItalic": "most remote",
+  "statement": "Space, where maintenance is impossible and energy autonomy is not optional.",
+  "status": "Complete",
+  "facts": [
+    [
+      "Module",
+      "IY1EH5 Engineering Global Challenge, University of Hull"
+    ],
+    [
+      "When",
+      "March to May 2026"
+    ],
+    [
+      "Role",
+      "Design and Materials Engineer"
+    ],
+    [
+      "Team",
+      "Group 4, five students"
+    ],
+    [
+      "Tools",
+      "SolidWorks, PowerPoint, Google Docs"
+    ]
+  ],
+  "fallbackImage": "assembly.webp",
+  "chapters": [
+    {
+      "shot": "sun",
+      "kicker": "Energy Harvesting for Remote Sensor Networks",
+      "title": "Power for the *most remote* place",
+      "text": "My concept for the group brief: a satellite that makes its own electricity from sunlight, with no moving parts and no fuel. Scroll to follow the energy.",
+      "hero": true
+    },
+    {
+      "shot": "wide",
+      "kicker": "The source",
+      "title": "*1361* watts on every square metre",
+      "text": "Above the atmosphere, nothing filters the Sun. That is the total solar irradiance in low Earth orbit (Kopp and Lean, 2011), and the whole system is built to catch it.",
+      "specs": [
+        [
+          "Total solar irradiance",
+          "1361 W/m²"
+        ],
+        [
+          "Environment",
+          "Low Earth orbit"
+        ]
+      ]
+    },
+    {
+      "shot": "dish",
+      "kicker": "01 Collect",
+      "title": "A dish that *bends light* to one point",
+      "text": "A revolved parabola sends every ray parallel to its axis to the same focal point. Three struts hold a collar right at the focus.",
+      "specs": [
+        [
+          "Aperture",
+          "200 mm"
+        ],
+        [
+          "Focal length",
+          "50 mm"
+        ],
+        [
+          "Profile",
+          "y = x² / 4f"
+        ],
+        [
+          "Material",
+          "Aluminium 1060, silver coated"
+        ],
+        [
+          "Reflectivity",
+          "85%"
+        ],
+        [
+          "Struts",
+          "3 × 101.45 mm"
+        ]
+      ]
+    },
+    {
+      "shot": "receiver",
+      "kicker": "02 Absorb",
+      "title": "Copper at the *hot spot*",
+      "text": "A hollow copper tube sits in the collar and soaks up the concentrated flux. Copper conducts heat away fast, so the energy moves instead of pooling.",
+      "specs": [
+        [
+          "Outer / inner diameter",
+          "16 / 12 mm"
+        ],
+        [
+          "Length",
+          "60 mm"
+        ],
+        [
+          "Conductivity",
+          "401 W/m·K"
+        ]
+      ]
+    },
+    {
+      "shot": "pipe",
+      "kicker": "03 Transport",
+      "title": "Heat, carried *through the body*",
+      "text": "Copper heat pipes run from the receiver, through the mounting, into the satellite and across to the shadow-facing side.",
+      "specs": [
+        [
+          "Outer / inner diameter",
+          "6 / 4 mm"
+        ],
+        [
+          "Lengths",
+          "110 mm and 80 mm"
+        ],
+        [
+          "Moving parts",
+          "0"
+        ]
+      ]
+    },
+    {
+      "shot": "stack",
+      "kicker": "04 Convert",
+      "title": "Temperature difference *becomes voltage*",
+      "text": "A copper spreader evens out the heat across a bismuth telluride TEG. The difference between its hot and cold faces pushes charge through the semiconductor: the Seebeck effect.",
+      "specs": [
+        [
+          "Heat spreader",
+          "40 × 40 × 3 mm copper"
+        ],
+        [
+          "TEG module",
+          "40 × 40 × 4 mm Bi₂Te₃"
+        ],
+        [
+          "Couples",
+          "60 at 200 μV/K"
+        ],
+        [
+          "V_oc at ΔT = 100 K",
+          "60 × 200 μV × 100 = 1.2 V"
+        ]
+      ]
+    },
+    {
+      "shot": "radiator",
+      "kicker": "05 Reject",
+      "title": "Facing the *cold of deep space*",
+      "text": "With no air in orbit, waste heat can only leave as radiation. The radiator sits flush in a recess on the shadow side, and six fins multiply its radiating area.",
+      "specs": [
+        [
+          "Base",
+          "80 × 80 × 2 mm aluminium"
+        ],
+        [
+          "Fins",
+          "6 × (80 × 15 × 1 mm)"
+        ],
+        [
+          "Law",
+          "P = εσAT⁴"
+        ],
+        [
+          "Background",
+          "≈ 2.7 K"
+        ]
+      ]
+    },
+    {
+      "shot": "orbit",
+      "kicker": "06 Store",
+      "title": "A satellite that *powers itself*",
+      "text": "A boost converter conditions the output into a battery module, and a sensor transmits to ground stations during line-of-sight windows. Everything lives in one aluminium shell.",
+      "specs": [
+        [
+          "Body",
+          "220 × 140 × 140 mm, 3 mm wall"
+        ],
+        [
+          "Material",
+          "Aluminium 1060"
+        ],
+        [
+          "Recess",
+          "90 × 90 mm for the radiator"
+        ]
+      ]
+    }
+  ],
+  "calc": {
+    "title": "Run the *numbers*",
+    "intro": "The same first-order relationships from the report. The design point is a 200 mm dish and a 100 K difference across the TEG.",
+    "solar": 1361,
+    "reflectivity": 0.85,
+    "couples": 60,
+    "seebeck": 0.0002,
+    "note": "Open-circuit voltage only. Real output depends on the load, the module's internal resistance and how much of the concentrated heat reaches the TEG."
+  },
+  "gallery": {
+    "title": "Every part, *modelled from scratch*",
+    "intro": "I learned SolidWorks for this project and built every part, the assembly and the engineering drawing.",
+    "items": [
+      [
+        "Full assembly",
+        "assembly.webp"
+      ],
+      [
+        "Cutaway: heat pipe routing",
+        "cutaway.webp"
+      ],
+      [
+        "Parabolic dish",
+        "dish.webp"
+      ],
+      [
+        "Receiver tube",
+        "receiver.webp"
+      ],
+      [
+        "Heat pipe",
+        "heatpipe.webp"
+      ],
+      [
+        "Copper heat spreader",
+        "spreader.webp"
+      ],
+      [
+        "Bi₂Te₃ TEG module",
+        "teg.webp"
+      ],
+      [
+        "Radiator panel",
+        "radiator.webp"
+      ],
+      [
+        "Battery module",
+        "battery.webp"
+      ],
+      [
+        "Mounting frame",
+        "frame.webp"
+      ],
+      [
+        "Satellite body",
+        "satellite-open.webp"
+      ],
+      [
+        "Collector, side view",
+        "collector.webp"
+      ]
+    ],
+    "drawing": "drawing.webp",
+    "drawingCaption": "Engineering drawing of the full assembly, with orthographic views and a bill of materials."
+  },
+  "sections": [],
+  "did": {
+    "title": "What I did",
+    "items": [
+      [
+        "Concept",
+        "Came up with the orbital solar-thermal and TEG concept for the group brief."
+      ],
+      [
+        "CAD",
+        "Learned SolidWorks from scratch; modelled all ten parts, the assembly and the drawing."
+      ],
+      [
+        "Thermal chain",
+        "Chose a material for every stage: silver-coated dish, copper receiver and pipes, Bi₂Te₃ TEG, finned aluminium radiator."
+      ],
+      [
+        "Numbers",
+        "Sized the output: 60 couples × 200 μV/K × 100 K gives 1.2 V open circuit."
+      ],
+      [
+        "Presentation",
+        "Designed the group deck and presented the concepts."
+      ],
+      [
+        "Coordination",
+        "Set up the shared Google Docs folder and helped set the technical direction."
+      ]
+    ]
+  },
+  "improve": {
+    "title": "What I'd improve",
+    "items": [
+      [
+        "Heat balance",
+        "Size the radiator from a full heat balance, absorbed against radiated, instead of picking the fins by eye."
+      ],
+      [
+        "Real ΔT",
+        "Model the thermal resistances from receiver to TEG to predict the actual temperature difference, not assume 100 K."
+      ],
+      [
+        "Pointing",
+        "Add a way to keep the dish facing the Sun as the satellite orbits."
+      ],
+      [
+        "Eclipse",
+        "Size the battery for the part of each orbit spent in Earth's shadow."
+      ],
+      [
+        "Slides",
+        "Less text and bigger type; the detail belongs in the delivery."
+      ],
+      [
+        "Process",
+        "A shared doc from day one, sprint targets per person, and flagging skill gaps early."
+      ]
+    ]
+  }
+}

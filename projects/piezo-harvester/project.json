@@ -1,0 +1,195 @@
+{
+  "id": "piezo-harvester",
+  "layout": "explore",
+  "darkOnly": true,
+  "tab": "Piezo Harvester",
+  "code": "EGC-02",
+  "title": "A sensor that runs on the machine it watches",
+  "status": "Group final design",
+  "intro": "Industrial machines vibrate all day. This cantilever turns that wasted motion into electricity for a wireless sensor that reports faults before they become breakdowns.",
+  "credit": "Our group's chosen design, picked with a weighted decision matrix over four concepts. Concept led by my teammate Chiedozie Obodoechi; I co-led the research and the technical overview with him.",
+  "facts": [
+    [
+      "Module",
+      "IY1EH5 Engineering Global Challenge, University of Hull"
+    ],
+    [
+      "When",
+      "April to May 2026"
+    ],
+    [
+      "My role",
+      "Co-lead, research and technical overview"
+    ],
+    [
+      "Tools",
+      "SolidWorks, Simulink, MATLAB"
+    ]
+  ],
+  "fallbackImage": "piezo-model.webp",
+  "parts": [
+    {
+      "id": "base",
+      "name": "Base mass",
+      "material": "Stainless steel",
+      "size": "40 × 40 × 8 mm",
+      "text": "Bonded to the machine with epoxy. Stiff enough to pass every vibration straight into the beam, and a mount for the PCB."
+    },
+    {
+      "id": "beam",
+      "name": "Cantilever beam",
+      "material": "Stainless steel",
+      "size": "50 × 10 × 0.4 mm",
+      "text": "Bends with each vibration and carries the PZT layer. Stainless for its stiffness and steady behaviour under cyclic bending."
+    },
+    {
+      "id": "pzt",
+      "name": "PZT layer",
+      "material": "Lead zirconate titanate",
+      "size": "30 × 10 × 0.2 mm",
+      "text": "Turns bending stress into voltage. It stops short of the tip because the stress is highest at the root."
+    },
+    {
+      "id": "electrodes",
+      "name": "Electrodes",
+      "material": "Silver",
+      "size": "30 × 10 × 0.02 mm",
+      "text": "Thin silver films on both faces of the PZT collect the charge without stiffening the beam."
+    },
+    {
+      "id": "mass",
+      "name": "Proof mass",
+      "material": "Brass",
+      "size": "30 × 15 × 1.5 mm, 5.7 g",
+      "text": "Adds inertia at the free end to bend the beam further and pull its resonance down to 30 to 35 Hz machinery."
+    },
+    {
+      "id": "wires",
+      "name": "Wires",
+      "material": "Copper, twisted pair",
+      "size": "0.2 mm × 20 mm",
+      "text": "Soldered to the electrodes, strain-relieved with epoxy and twisted to reject noise on the way to the PCB."
+    }
+  ],
+  "sim": {
+    "E": 200000000000.0,
+    "L": 0.05,
+    "w": 0.01,
+    "t": 0.0004,
+    "rho": 8000,
+    "mass": 5.7,
+    "machine": 32,
+    "zeta": 0.03,
+    "band": [
+      30,
+      35
+    ],
+    "on": 2.2,
+    "off": 1.6
+  },
+  "how": {
+    "title": "How it works",
+    "items": [
+      [
+        "Vibrate",
+        "The machine shakes the base; the beam and proof mass swing hardest when the machine's frequency matches the beam's resonance."
+      ],
+      [
+        "Convert",
+        "Bending stresses the PZT layer, which produces an alternating voltage. A four-diode bridge rectifies it into a storage capacitor."
+      ],
+      [
+        "Store and send",
+        "At 2.2 V a relay connects the sensor network: accelerometer, microcontroller and sub-GHz radio. It runs until the capacitor falls to 1.6 V."
+      ],
+      [
+        "Retune",
+        "Below 1.6 V, a variable load shifts the harvester's resonance towards the machine's, keeping power up when the vibration changes."
+      ]
+    ]
+  },
+  "figures": {
+    "title": "Modelled in Simulink and MATLAB",
+    "items": [
+      [
+        "piezo-simulink.webp",
+        "Simulink model of the harvesting, storage and tuning circuit"
+      ],
+      [
+        "piezo-rectifier.webp",
+        "Four-diode bridge rectifier into the storage capacitor"
+      ],
+      [
+        "piezo-freq.webp",
+        "Resonant frequency against proof mass: why 5.7 g"
+      ],
+      [
+        "piezo-load.webp",
+        "Power against load resistance, with a clear optimum"
+      ],
+      [
+        "piezo-model.webp",
+        "The SolidWorks model: base, cantilever, PZT layer and proof mass"
+      ]
+    ]
+  },
+  "did": {
+    "title": "What we did",
+    "items": [
+      [
+        "Chose the concept",
+        "Scored four concepts in a weighted decision matrix and picked the piezo harvester."
+      ],
+      [
+        "CAD",
+        "Modelled the base, cantilever, PZT layer, proof mass and wiring in SolidWorks."
+      ],
+      [
+        "Circuit",
+        "Built a Simulink model of the rectifier, storage capacitor and relay-switched tuning."
+      ],
+      [
+        "Tuning",
+        "Used MATLAB to choose the proof mass for 30 to 35 Hz machinery and find the best load resistance."
+      ],
+      [
+        "Power budget",
+        "Checked the duty cycle of sleeping, sensing and transmitting against the harvested power."
+      ],
+      [
+        "Build and risks",
+        "Wrote the build procedure, a risk assessment and a bill of materials of about £15."
+      ]
+    ]
+  },
+  "improve": {
+    "title": "What we'd improve",
+    "items": [
+      [
+        "Effective mass",
+        "The model puts the whole beam's mass at the tip. Using its effective mass, about a quarter, moves 5.7 g from 29.8 Hz to about 32.6 Hz, inside the band."
+      ],
+      [
+        "Prototype",
+        "Build one and measure it on a shaker table to check the real resonance and output."
+      ],
+      [
+        "PCB",
+        "Model the PCB and enclosure, which the CAD leaves out."
+      ],
+      [
+        "Harvesting IC",
+        "Swap the discrete tuning circuit for a dedicated piezo harvesting chip such as the LTC3588."
+      ],
+      [
+        "Fatigue",
+        "Check the stainless beam's fatigue life at full resonant amplitude."
+      ],
+      [
+        "Wider band",
+        "Add a second beam or magnetic tuning so one unit covers more machine speeds."
+      ]
+    ]
+  },
+  "sections": []
+}
