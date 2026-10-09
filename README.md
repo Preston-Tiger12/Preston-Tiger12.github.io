@@ -8,4 +8,4 @@ Interactive engineering portfolio for a Mechanical Engineering student (Robotics
 - **Project pages:** a self-powered satellite using a solar-thermal TEG system (SolidWorks), and a piezoelectric vibration harvester (MATLAB and Simulink).
 - **Built with:** vanilla JavaScript, three.js, GSAP and Lenis. No build step; it's served as static files.
 
-Run it locally with any static server, for example `python -m http.server`, then open `http://localhost:8000`.
+
