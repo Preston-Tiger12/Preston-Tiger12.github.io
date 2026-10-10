@@ -2,6 +2,11 @@
 
 All notable changes to the portfolio site.
 
+## 1.2.1 · 10 October 2026
+
+### Fixed
+- **Old page showing after an update.** Browsers could keep showing the previous version of the page for up to 10 minutes after a deploy. The page now checks `version.json` (always fetched fresh) when it loads and reloads itself once if a newer build is out. Each release bumps the build number in `version.json`, in the page, and on the CSS and script links.
+
 ## 1.2.0 · 10 October 2026
 
 ### Added
