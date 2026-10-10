@@ -316,8 +316,17 @@ $("#theme").onclick = () => {
   document.documentElement.dataset.theme = t;
   try { localStorage.setItem("hangar-theme", t); } catch (e) {}
   paintTheme();
+  slashMark();
 };
 paintTheme();
+// Brand mark: the claws re-cut the star whenever the theme changes (and once on load).
+// Removing the class and forcing a reflow restarts the CSS animations on every click.
+function slashMark() {
+  const m = document.querySelector(".tmark");
+  if (!m) return;
+  m.classList.remove("tm-go"); void m.offsetWidth; m.classList.add("tm-go");
+}
+setTimeout(slashMark, 600);
 
 // ---------- custom cursor (mouse only), after the Hangar's: a dot that sticks and a ring that follows ----------
 // The ring grows over anything clickable and shows that element's data-cursor word ("Open", "Read").

@@ -2,6 +2,13 @@
 
 All notable changes to the portfolio site.
 
+## 1.2.0 · 10 October 2026
+
+### Added
+- **Brand mark in the header.** A chrome four-point north star cut by three gold tiger claw marks, drawn as inline SVG so it stays sharp at any size. The chrome is silver in dark mode and black in light mode.
+- **Theme-switch animation.** Switching between light and dark makes the claws slash across the star again while it spins a quarter turn, the chrome re-colours and a gold glint flashes. It also plays once on load, and a light sheen sweeps across the star on hover. All of this is off for visitors who have reduced motion turned on.
+- **Favicon** (favicon.svg): the same mark on a midnight tile.
+
 ## 1.1.0 · 10 October 2026
 
 ### Changed
