@@ -762,3 +762,30 @@ body.sol-dark .sol-tuner.ok .sol-freq span{color:#7DDC9E}
 /* about title in the option-B style: uppercase blur-in words, "Brave" in gold script */
 .hx-ab-title.hx-ab-cine{font:700 clamp(54px,8.6vw,160px)/.92 var(--display);letter-spacing:-.045em;text-transform:uppercase;max-width:9.6ch}
 .hx-ab-cine .script{font:400 1.8em/.55 var(--script);text-transform:none;letter-spacing:0;color:var(--gold);padding:0 .08em 0 .04em;vertical-align:-.12em}
+
+/* ---------- brand mark: chrome north star, three claw marks (v1.2.0) ---------- */
+:root{--tm1:#2A2F3A;--tm2:#0B0C0E;--tm3:#AEB6C6;--tm4:#14171E;--tm5:#4A5163;--tm-claw:#C9A300}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--tm5:#8792B4;--tm-claw:#E5BE01}}
+:root[data-theme="dark"],:root.force-dark{--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--tm5:#8792B4;--tm-claw:#E5BE01}
+.tmark{display:inline-block;width:30px;height:30px;flex:none;margin-right:2px}
+.tmark svg{width:100%;height:100%;display:block;overflow:visible}
+.tmark .s1{stop-color:var(--tm1)}.tmark .s2{stop-color:var(--tm2)}.tmark .s3{stop-color:var(--tm3)}.tmark .s4{stop-color:var(--tm4)}.tmark .s5{stop-color:var(--tm5)}
+.tmark stop{transition:stop-color .7s var(--ease)}
+.tm-claws{stroke:var(--tm-claw);transition:stroke .7s var(--ease)}
+.tm-star{transform-box:view-box;transform-origin:20px 20px}
+.tm-sheen{transform:translateX(0)}
+.brand:hover .tm-sheen{animation:tmSheen .8s var(--ease) 1}
+.brand:hover .tm-star{transform:rotate(-8deg);transition:transform .5s var(--ease)}
+.tm-star{transition:transform .5s var(--ease)}
+.tmark.tm-go .tm-star{animation:tmSpin .9s var(--snap) 1}
+.tmark.tm-go .tm-sheen{animation:tmSheen .9s var(--ease) .35s 1 both}
+.tmark.tm-go .tm-claws path,.tmark.tm-go .tm-cuts path{stroke-dasharray:1;animation:tmSlash .34s cubic-bezier(.7,0,.3,1) .38s 1 both}
+.tmark.tm-go .tm-claws path:nth-child(2),.tmark.tm-go .tm-cuts path:nth-child(2){animation-delay:.45s}
+.tmark.tm-go .tm-claws path:nth-child(3),.tmark.tm-go .tm-cuts path:nth-child(3){animation-delay:.52s}
+.tmark.tm-go svg{animation:tmGlow 1.3s ease-out .4s 1}
+@keyframes tmSpin{0%{transform:rotate(0) scale(1)}35%{transform:rotate(-25deg) scale(.78)}100%{transform:rotate(90deg) scale(1)}}
+@keyframes tmSheen{from{transform:translateX(0)}to{transform:translateX(70px)}}
+@keyframes tmSlash{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes tmGlow{0%{filter:none}30%{filter:drop-shadow(0 0 5px var(--tm-claw))}100%{filter:none}}
+html.menu-open .tmark{--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--tm5:#8792B4}
+@media (prefers-reduced-motion:reduce){.tmark *,.tmark svg{animation:none!important}}
