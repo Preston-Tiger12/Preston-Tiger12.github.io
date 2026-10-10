@@ -240,7 +240,7 @@ function showLoader() {
     n.textContent = String(Math.round(e * (ready ? 100 : 92))).padStart(3, "0");
     L.style.setProperty("--p", e * (ready ? 1 : 0.92));
     if (k < 1 || !ready) requestAnimationFrame(step);
-    else if (!shown) { shown = true; n.textContent = "100"; L.classList.add("out"); setTimeout(() => L.remove(), 1100); }
+    else if (!shown) { shown = true; n.textContent = "100"; L.classList.add("out"); setTimeout(revealMark, 450); setTimeout(() => L.remove(), 1100); }
   };
   requestAnimationFrame(step);
   return { done() { ready = true; } };
@@ -319,14 +319,22 @@ $("#theme").onclick = () => {
   slashMark();
 };
 paintTheme();
-// Brand mark: the claws re-cut the star whenever the theme changes (and once on load).
-// Removing the class and forcing a reflow restarts the CSS animations on every click.
+// Brand mark: a theme switch spins the star a quarter turn while the chrome re-colours.
+// Removing the class and forcing a reflow restarts the CSS animation on every click.
 function slashMark() {
   const m = document.querySelector(".tmark");
-  if (!m) return;
-  m.classList.remove("tm-go"); void m.offsetWidth; m.classList.add("tm-go");
+  if (!m || m.classList.contains("tm-wait")) return;
+  m.classList.remove("tm-intro", "tm-go"); void m.offsetWidth; m.classList.add("tm-go");
 }
-setTimeout(slashMark, 600);
+// One-time intro: the claws rip the space open and the star appears. It plays as the loader lifts,
+// or after a fallback delay when there is no loader (a deep link, or reduced motion).
+let markShown = false;
+function revealMark() {
+  if (markShown) return; markShown = true;
+  const m = document.querySelector(".tmark");
+  m?.classList.remove("tm-wait"); m?.classList.add("tm-intro");
+}
+setTimeout(revealMark, 4000);
 
 // ---------- custom cursor (mouse only), after the Hangar's: a dot that sticks and a ring that follows ----------
 // The ring grows over anything clickable and shows that element's data-cursor word ("Open", "Read").
@@ -342,6 +350,17 @@ if (matchMedia("(pointer: fine)").matches && !reduced) {
     if (rx < -50) { rx = e.clientX; ry = e.clientY; }
     mx = e.clientX; my = e.clientY; dot.style.translate = `${mx}px ${my}px`;
     document.documentElement.classList.add("has-cursor");
+    const star = e.target.closest?.(".tmark");
+    if (star && !document.documentElement.classList.contains("menu-open")) {
+      // gravity well: the ring locks onto the star and the dot rides the ring on the mouse's side
+      const b = star.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+      const a = Math.atan2(my - cy, mx - cx);
+      mx = cx; my = cy; dot.style.translate = `${cx + Math.cos(a) * 30}px ${cy + Math.sin(a) * 30}px`;
+      ring.classList.add("warp"); dot.classList.add("warp"); ring.classList.remove("hover", "word");
+      if (!raf) raf = requestAnimationFrame(follow);
+      return;
+    }
+    ring.classList.remove("warp"); dot.classList.remove("warp");
     const t = e.target.closest?.("a, button, [data-cursor], input, label");
     const label = t?.dataset.cursor || "";
     ring.classList.toggle("hover", !!t); ring.classList.toggle("word", !!label);

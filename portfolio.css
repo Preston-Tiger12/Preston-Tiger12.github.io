@@ -763,29 +763,51 @@ body.sol-dark .sol-tuner.ok .sol-freq span{color:#7DDC9E}
 .hx-ab-title.hx-ab-cine{font:700 clamp(54px,8.6vw,160px)/.92 var(--display);letter-spacing:-.045em;text-transform:uppercase;max-width:9.6ch}
 .hx-ab-cine .script{font:400 1.8em/.55 var(--script);text-transform:none;letter-spacing:0;color:var(--gold);padding:0 .08em 0 .04em;vertical-align:-.12em}
 
-/* ---------- brand mark: chrome north star, three claw marks (v1.2.0) ---------- */
+/* ---------- brand mark: chrome north star (v1.2.0) ----------
+   On first load three claws rip the space open, the tears widen until the star shows through,
+   then the claws fade and only the star stays. A theme switch spins it a quarter turn and re-colours
+   the chrome. Over the star, the cursor is pulled into orbit around it (portfolio.js) so it never covers it. */
 :root{--tm1:#2A2F3A;--tm2:#0B0C0E;--tm3:#AEB6C6;--tm4:#14171E;--tm5:#4A5163;--tm-claw:#C9A300}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--tm5:#8792B4;--tm-claw:#E5BE01}}
 :root[data-theme="dark"],:root.force-dark{--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--tm5:#8792B4;--tm-claw:#E5BE01}
+html.menu-open .tmark{--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--tm5:#8792B4}
 .tmark{display:inline-block;width:30px;height:30px;flex:none;margin-right:2px}
 .tmark svg{width:100%;height:100%;display:block;overflow:visible}
 .tmark .s1{stop-color:var(--tm1)}.tmark .s2{stop-color:var(--tm2)}.tmark .s3{stop-color:var(--tm3)}.tmark .s4{stop-color:var(--tm4)}.tmark .s5{stop-color:var(--tm5)}
 .tmark stop{transition:stop-color .7s var(--ease)}
-.tm-claws{stroke:var(--tm-claw);transition:stroke .7s var(--ease)}
-.tm-star{transform-box:view-box;transform-origin:20px 20px}
+.tm-body,.tm-star{transform-box:view-box;transform-origin:20px 20px}
+.tm-body{transition:transform .45s var(--ease),filter .45s var(--ease)}
+.tm-rips path{stroke-width:0}
+.tm-claws{stroke:var(--tm-claw);opacity:0}
 .tm-sheen{transform:translateX(0)}
-.brand:hover .tm-sheen{animation:tmSheen .8s var(--ease) 1}
-.brand:hover .tm-star{transform:rotate(-8deg);transition:transform .5s var(--ease)}
-.tm-star{transition:transform .5s var(--ease)}
-.tmark.tm-go .tm-star{animation:tmSpin .9s var(--snap) 1}
-.tmark.tm-go .tm-sheen{animation:tmSheen .9s var(--ease) .35s 1 both}
-.tmark.tm-go .tm-claws path,.tmark.tm-go .tm-cuts path{stroke-dasharray:1;animation:tmSlash .34s cubic-bezier(.7,0,.3,1) .38s 1 both}
-.tmark.tm-go .tm-claws path:nth-child(2),.tmark.tm-go .tm-cuts path:nth-child(2){animation-delay:.45s}
-.tmark.tm-go .tm-claws path:nth-child(3),.tmark.tm-go .tm-cuts path:nth-child(3){animation-delay:.52s}
-.tmark.tm-go svg{animation:tmGlow 1.3s ease-out .4s 1}
+/* hover: the star swells and brightens while the cursor orbits it */
+.tmark:hover .tm-body{transform:scale(1.12);filter:brightness(1.15) drop-shadow(0 0 4px color-mix(in srgb,var(--tm-claw) 55%,transparent))}
+.tmark:hover .tm-sheen{animation:tmSheen .8s var(--ease) 1}
+@media (prefers-reduced-motion:no-preference){
+  .tmark.tm-wait .tm-full{opacity:0}
+  .tmark.tm-intro .tm-claws{animation:tmFade .5s ease-in .5s both}
+  .tmark.tm-intro .tm-claws path{stroke-dasharray:1;animation:tmDraw .3s cubic-bezier(.7,0,.3,1) both}
+  .tmark.tm-intro .tm-rips path{stroke-dasharray:1;animation:tmRip 1.05s cubic-bezier(.7,0,.3,1) both}
+  .tmark.tm-intro .tm-claws path:nth-child(2),.tmark.tm-intro .tm-rips path:nth-child(2){animation-delay:.07s}
+  .tmark.tm-intro .tm-claws path:nth-child(3),.tmark.tm-intro .tm-rips path:nth-child(3){animation-delay:.14s}
+  .tmark.tm-intro .tm-full{animation:tmShow .35s ease-out .9s both}
+  .tmark.tm-intro .tm-star{animation:tmPop .8s var(--ease) .45s both}
+  .tmark.tm-intro .tm-sheen{animation:tmSheen .8s var(--ease) 1s both}
+  .tmark.tm-intro svg{animation:tmGlow 1.2s ease-out .8s 1}
+  .tmark.tm-go .tm-star{animation:tmSpin .9s var(--snap) 1}
+  .tmark.tm-go .tm-sheen{animation:tmSheen .9s var(--ease) .35s 1 both}
+  .tmark.tm-go svg{animation:tmGlow 1.2s ease-out .3s 1}
+}
+@keyframes tmDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes tmRip{0%{stroke-dashoffset:1;stroke-width:2.6}30%{stroke-dashoffset:0;stroke-width:2.6}100%{stroke-dashoffset:0;stroke-width:17}}
+@keyframes tmFade{from{opacity:1}to{opacity:0}}
+@keyframes tmShow{from{opacity:0}to{opacity:1}}
+@keyframes tmPop{0%{transform:scale(.8) rotate(-30deg)}70%{transform:scale(1.08) rotate(4deg)}100%{transform:scale(1) rotate(0)}}
 @keyframes tmSpin{0%{transform:rotate(0) scale(1)}35%{transform:rotate(-25deg) scale(.78)}100%{transform:rotate(90deg) scale(1)}}
 @keyframes tmSheen{from{transform:translateX(0)}to{transform:translateX(70px)}}
-@keyframes tmSlash{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes tmGlow{0%{filter:none}30%{filter:drop-shadow(0 0 5px var(--tm-claw))}100%{filter:none}}
-html.menu-open .tmark{--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--tm5:#8792B4}
-@media (prefers-reduced-motion:reduce){.tmark *,.tmark svg{animation:none!important}}
+/* cursor in orbit: the ring centres on the star, the dot rides the ring on the side the mouse is */
+.cursor.warp,.cursor.warp.word,.cursor.warp.hover{width:60px;height:60px;margin:-30px 0 0 -30px;background:transparent;backdrop-filter:none;
+  border:1px solid color-mix(in srgb,var(--tm-claw) 75%,transparent);box-shadow:0 0 16px -5px var(--tm-claw),inset 0 0 14px -8px var(--tm-claw)}
+.cursor.warp span{opacity:0}
+.cursor-dot.warp{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;box-shadow:0 0 8px 1px var(--tm-claw)}
