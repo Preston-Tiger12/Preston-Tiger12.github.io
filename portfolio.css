@@ -784,7 +784,7 @@ html.menu-open .tmark{--tm1:#FFFFFF;--tm2:#C9D2EA;--tm3:#3A4566;--tm4:#F4F6FB;--
 .tmark:hover .tm-body{transform:scale(1.12);filter:brightness(1.15) drop-shadow(0 0 4px color-mix(in srgb,var(--tm-claw) 55%,transparent))}
 .tmark:hover .tm-sheen{animation:tmSheen .8s var(--ease) 1}
 @media (prefers-reduced-motion:no-preference){
-  .tmark.tm-wait .tm-full{opacity:0}
+  .tmark.tm-wait .tm-full{animation:tmShow .4s ease-out 5s both}   /* safety net: shows the star even if the script never starts the intro */
   .tmark.tm-intro .tm-claws{animation:tmFade .5s ease-in .5s both}
   .tmark.tm-intro .tm-claws path{stroke-dasharray:1;animation:tmDraw .3s cubic-bezier(.7,0,.3,1) both}
   .tmark.tm-intro .tm-rips path{stroke-dasharray:1;animation:tmRip 1.05s cubic-bezier(.7,0,.3,1) both}

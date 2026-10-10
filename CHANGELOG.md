@@ -11,6 +11,9 @@ All notable changes to the portfolio site.
 - **Cursor orbit.** Over the star, the custom cursor no longer covers it: the ring locks into an orbit around the star with a soft gold halo, and the dot rides the ring on the side the mouse is on. The star swells slightly and a sheen sweeps across it.
 - **Favicon** (favicon.svg): the star on a midnight tile.
 
+### Fixed
+- **Star missing after an update.** Browsers could keep the old script for up to 10 minutes alongside the new page, which left the star in its hidden pre-intro state. The stylesheet, script and favicon links now carry a version number (`?v=1.2.0`) so an update always loads together, and the star fades in on its own after 5 seconds if the intro never starts.
+
 ## 1.1.0 · 10 October 2026
 
 ### Changed
