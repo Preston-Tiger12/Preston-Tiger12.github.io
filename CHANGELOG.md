@@ -2,6 +2,11 @@
 
 All notable changes to the portfolio site.
 
+## 1.2.2 · 15 October 2026
+
+### Fixed
+- **"a.k.a. Tiger" overlapping PRESTON on phones.** On narrow screens the PRESTON line spans the full width, so the gold Tiger was drawn on top of it. On phones (760px and below) Tiger now sits just under PRESTON, clear of both the name and the tagline. Desktop is unchanged.
+
 ## 1.2.1 · 10 October 2026
 
 ### Fixed

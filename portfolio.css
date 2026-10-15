@@ -505,7 +505,7 @@ body.is-home .foot{border-top:0}
   .hx-hob-copy{top:80px;bottom:auto}
   .hx-hob-slides{height:120px}
   .hx-hob-slides .hx-h{font-size:52px}
-  .hx-aka{bottom:calc(29svh + 1.2em)}
+  .hx-aka{bottom:calc(29svh - 2.6em)}
   .hx-rec-pin{grid-template-columns:minmax(0,1fr);align-content:center;gap:24px;padding-top:70px}
   .hx-rec-side{flex-direction:row;align-items:center}
   .hx-ring{width:64px;height:64px}
